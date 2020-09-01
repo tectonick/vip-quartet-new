@@ -178,7 +178,7 @@ main > .container{
   #logo{
     width: 60%;
     left:2rem;
-    top: 45%;
+    top: 50%;
     opacity: 0;
   }
 }
