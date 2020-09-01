@@ -7,8 +7,8 @@ const app=express();
 
 
 const hbs=handlebars.create({
-  //defaultLayout:"main",
-  extname:"hbs"
+  defaultLayout:"main",
+  extname:"hbs",
 });
 
 app.engine("hbs", hbs.engine);
@@ -29,7 +29,8 @@ const fs = require('fs');
 
 app.get("/", (req, res) => {
     var galleryImages=  NamesOfDirFilesWOExtension("/static/img/gallery");
-    res.render('index', {galleryImages});
+    var repertoire=GetRepertoire();
+    res.render('index', {galleryImages, repertoire});
   });
 
 
@@ -46,3 +47,17 @@ function NamesOfDirFilesWOExtension(basepath){
     
   return names;
 }
+
+function GetRepertoire(){
+    var names=[];
+    var realpath=path.join(__dirname,'repertoire');  
+    var n=1;
+    var files = fs.readdirSync(realpath);
+      files.forEach(file => {
+        let content=fs.readFileSync(path.join(realpath,file));  
+        names.push({name:path.basename(file, ".txt"),data:content, num:n});           
+        n++;      
+      }); 
+      
+    return names;
+  }
