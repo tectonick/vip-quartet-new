@@ -1,7 +1,8 @@
-html{ height:100%; margin:0; 
+/*html{ height:100%; margin:0; 
   width: 100%;
   overflow-x: hidden;
-}
+}*/
+
 
 html {
   scroll-behavior: smooth;
@@ -89,9 +90,12 @@ pre{
 }
 
 main > .container{
-  opacity: 0;
   margin-bottom: 20px;
 }
+.fade{
+  opacity: 0;
+}
+
 
 
 #dropdown{
@@ -116,7 +120,7 @@ main > .container{
   min-width: 10rem;
   padding: .5rem 0;
   margin: .125rem 0 0;
-  font-size: 3rem;
+  font-size: 100%;
   font-weight: bold;
   color: #212529;
   text-align: left;

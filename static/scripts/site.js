@@ -10,7 +10,7 @@ $( document ).ready(function() {
     $(window).scroll(function () {
 
         /* Check the location of each desired element */
-        $('.container').each(function (i) {
+        $('.fade').each(function (i) {
 
             //var bottom_of_object = $(this).position().top + $(this).outerHeight();
             var bottom_of_object = $(this).position().top +$(this).outerHeight()/3;
