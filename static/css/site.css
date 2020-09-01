@@ -3,6 +3,10 @@
   overflow-x: hidden;
 }*/
 
+@font-face {
+  font-family: Gabriola;
+  src: url(/fonts/Gabriola.woff2);
+}
 
 html {
   scroll-behavior: smooth;
@@ -54,6 +58,9 @@ pre{
   display: inline-block;
   content:none;
 }
+
+
+
 @media (max-width:776px){
   #menu-toggler p{
     display: none;
@@ -166,6 +173,17 @@ main > .container{
   top: 45%;
   opacity: 0;
 }
+
+@media (max-width:776px){
+  #logo{
+    width: 60%;
+    left:2rem;
+    top: 45%;
+    opacity: 0;
+  }
+}
+
+
 
 
 a, a:visited, a:hover, a:active  {

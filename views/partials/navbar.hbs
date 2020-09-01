@@ -35,6 +35,14 @@
 
 
   <img id="logo" src="/img/logo.png" alt="">
-  <img id="main-image" src="/img/mainphoto.png" alt="">
+  {{!-- <img id="main-image" srcset="/img/mainphoto-v.png 776w, /img/mainphoto.png 1920w" sizes="(max-width: 776px) 776px,
+            1920px" alt=""> --}}
+
+
+  <picture>
+    <source media="(max-width: 768px)" srcset="/img/mainphoto-v.png">
+    <source media="(min-width: 768px)" srcset="/img/mainphoto.png">
+    <img src="/img/mainphoto.png" alt="" style="width:100%;">
+</picture>
 
 </div>
