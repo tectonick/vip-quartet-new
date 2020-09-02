@@ -19,12 +19,13 @@ app.listen(PORT, ()=>{
 })
 const https = require('https');
 const fs = require('fs');
-// start https server
-// let sslOptions = {
-//    key: fs.readFileSync('key.pem'),
-//    cert: fs.readFileSync('cert.pem')
-// };
-// let serverHttps = https.createServer(sslOptions, app).listen(8000);
+
+//start https server
+let sslOptions = {
+   key: fs.readFileSync('key.pem'),
+   cert: fs.readFileSync('cert.pem')
+};
+let serverHttps = https.createServer(sslOptions, app).listen(8000);
 
 
 app.get("/", (req, res) => {
