@@ -514,8 +514,6 @@ opacity: 70%;
 
 
 
-
-
 .card-columns {
     -webkit-column-count: 2;
     -moz-column-count: 2;
@@ -544,3 +542,17 @@ opacity: 70%;
 }
 
 
+
+.edit-title{
+  position: fixed;
+  top: 2%;
+  left: 2%;
+  font-size:1.7rem;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.edit-title img{
+  margin-left:0.5rem;
+  width:10%;
+  cursor: pointer;
+}
