@@ -30,27 +30,15 @@ router.get("/login", (req, res) => {
 
 router.get('/', function (req, res) {
   var galleryImages = utils.NamesOfDirFilesWOExtension("/static/img/gallery");
-  var repertoire = utils.GetRepertoire();
   var text = JSON.parse(fs.readFileSync(path.join(__dirname, "text.json")));
-  res.render('admin', { galleryImages, repertoire, text });
+  res.render('admin', { galleryImages, text });
 });
 
 
 router.post("/", urlencodedParser, (req, res) => {
-
-
-  console.log("1");
   var repertoire = req.body.repertoire;
   var photosToDelete = req.body.photosToDelete;
-  delete req.body.repertoire;
   delete req.body.photosToDelete;
-
-  fs.readdirSync(path.join(__dirname, "repertoire")).forEach(element => {
-    fs.unlinkSync(path.join(__dirname, "repertoire", element));
-  });
-
-  console.log("2");
-
   if (req.body.contacts_phones) {
     var pId = 0;
     req.body.contacts_phones.forEach((element) => {
@@ -58,29 +46,13 @@ router.post("/", urlencodedParser, (req, res) => {
       pId++;
     })
   }
-  console.log("3");
-
-
-  console.log("4");
-
   if (photosToDelete) {
     photosToDelete.forEach(element => {
       fs.unlinkSync(path.join(__dirname, "static", element));
       console.log(element);
     });
   }
-  console.log("5");
-
-
-
   fs.writeFileSync(path.join(__dirname, "text.json"), JSON.stringify(req.body));
-   if (repertoire) {
-     repertoire.forEach(element => {
-       fs.writeFileSync(path.join(__dirname, "repertoire", element.name + ".txt"), element.data);
-     });
-   }
-  
-
   res.redirect("/admin");
 });
 

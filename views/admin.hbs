@@ -86,7 +86,7 @@
                     <!-- Accordion -->
                     <div id="accordionExample" class="accordion">
 
-                        {{#each repertoire}}
+                        {{#each text.repertoire}}
                         <!-- Accordion item-->
                         <div class="card repertoire-card" num="{{this.num}}">
                             <a class="delete-repertoire-button" href=""><img src="/img/delete-icon.png"
@@ -104,6 +104,7 @@
                                 data-parent="#accordionExample" class="collapse">
                                 <div class="card-body">
                                     <textarea name="repertoire[{{this.num}}][data]" rows="10">{{this.data}}</textarea>
+                                     <input type="hidden" name="repertoire[{{this.num}}][num]" value="{{this.num}}"/>
                                 </div>
                             </div>
                         </div>
@@ -201,6 +202,7 @@
                                 data-parent="#accordionExample" class="collapse">
                                 <div class="card-body">
                                     <textarea name="repertoire[${newId}][data]" rows="10">Репертуарный список</textarea>
+                                    <input type="hidden" name="repertoire[${newId}][num]" value="${newId}"/>
                                 </div>
                             </div>
                         </div>`;

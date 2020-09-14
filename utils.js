@@ -14,20 +14,6 @@ function NamesOfDirFilesWOExtension(basepath){
       
     return names;
   }
-  
-  function GetRepertoire(){
-      var names=[];
-      var realpath=path.join(__dirname,'repertoire');  
-      var n=0;
-      var files = fs.readdirSync(realpath);
-        files.forEach(file => {
-          let content=fs.readFileSync(path.join(realpath,file));  
-          names.push({name:path.basename(file, ".txt"),data:content, num:n});           
-          n++;      
-        }); 
-        
-      return names;
-    }
 
 
     function GetYoutubeId(url) {
@@ -39,4 +25,4 @@ function NamesOfDirFilesWOExtension(basepath){
         : null;
     }
 
-module.exports ={NamesOfDirFilesWOExtension, GetRepertoire};
+module.exports ={NamesOfDirFilesWOExtension};

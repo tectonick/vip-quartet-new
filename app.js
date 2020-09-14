@@ -40,9 +40,8 @@ let serverHttps = https.createServer(sslOptions, app).listen(8000);
 
 app.get("/", (req, res) => {
     var galleryImages=  utils.NamesOfDirFilesWOExtension("/static/img/gallery");
-    var repertoire=utils.GetRepertoire();
     var text=JSON.parse(fs.readFileSync(path.join(__dirname, "text.json")));
-    res.render('index', {galleryImages, repertoire, text});
+    res.render('index', {galleryImages, text});
   });
 
 
