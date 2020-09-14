@@ -13,7 +13,7 @@ const admin = {
 }
 var sessionId = 'none';
 
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 router.use(function (req, res, next) {
   if ((req.cookies.id === sessionId) || (req.path == "/login") || (req.path == "/logout")) {
@@ -30,8 +30,26 @@ router.get("/login", (req, res) => {
 router.get('/', function (req, res) {
     var galleryImages=utils.NamesOfDirFilesWOExtension("/static/img/gallery");
     var repertoire=utils.GetRepertoire();
-    res.render('admin', {galleryImages, repertoire});
+    var text=JSON.parse(fs.readFileSync(path.join(__dirname, "text.json")));
+    res.render('admin', {galleryImages, repertoire, text});
 });
+
+
+router.post("/", urlencodedParser, (req, res) => {
+  var repertoire=req.body.repertoire;
+  delete req.body.repertoire; 
+  fs.readdirSync(path.join(__dirname,"repertoire")).forEach(element => {
+    fs.unlinkSync(path.join(__dirname,"repertoire",element));    
+  });
+
+  repertoire.forEach(element => {
+    fs.writeFileSync(path.join(__dirname,"repertoire",element.name+".txt"),element.data);    
+  });
+
+  //fs.writeFileSync(path.join(__dirname, "text.json"),JSON.stringify(req.body));
+    res.redirect("/admin");
+});
+
 
 router.post("/login", urlencodedParser, (req, res) => {
 

@@ -549,10 +549,24 @@ opacity: 70%;
   left: 2%;
   font-size:1.7rem;
   background-color: rgba(255, 255, 255, 0.4);
+  z-index: 10;
 }
 
 .edit-title img{
   margin-left:0.5rem;
   width:10%;
   cursor: pointer;
+}
+
+
+textarea{
+  display: block;
+  width: 100%;
+  background-color: rgba(240,240,240,0.5);
+  text-align: center;
+}
+
+#phones textarea{
+  display: inline-block;
+  width: 40%;
 }

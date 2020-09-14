@@ -1,10 +1,8 @@
 
 $( document ).ready(function() {
 
+
     console.log("READY");
-    document.getElementById('save-button').addEventListener("click",()=>{
-        document.getElementById('edit-form').submit();
-    })
     $("#logo").delay(500).animate({ opacity: 1 }, 500)
     $("#dropdown").delay(500).animate({ opacity: 1 }, 500)
 
