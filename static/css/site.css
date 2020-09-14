@@ -600,3 +600,19 @@ a img:hover{
 .delete-contact-button img{
   width: 100%;
 }
+
+.delete-photo-button{
+  top:5px;
+  right: 0;
+  position: absolute;
+  z-index: 10;  
+  font-size: 0 !important;
+  cursor: pointer;
+}
+
+#upload{
+  border-width: 1px;
+    border-style: solid;
+    border-color: rgb(118, 118, 118);
+  background-color: rgba(240,240,240,0.5);;
+}

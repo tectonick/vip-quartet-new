@@ -4,6 +4,7 @@ const path=require('path');
 const adminRouter=require("./admin");
 const utils=require("./utils");
 const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 
 
 
@@ -20,6 +21,7 @@ const hbs=handlebars.create({
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
 app.use(cookieParser());
+app.use(fileUpload());
 app.use(express.static(path.join(__dirname, "static")));
 app.use('/admin',adminRouter);
 app.listen(PORT, ()=>{

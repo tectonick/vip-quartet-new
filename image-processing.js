@@ -29,7 +29,7 @@ function galleryImage(filepath){
       let name=path.basename(filepath,ext);
       let dir=path.dirname(filepath);
       return file.resize(1600, Jimp.AUTO) // resize
-        .quality(90) // set JPEG quality
+        .quality(100) // set JPEG quality
         .writeAsync(path.join(dir,name+'.jpg')); //
     })
     .catch(err => {

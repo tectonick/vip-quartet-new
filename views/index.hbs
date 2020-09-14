@@ -61,71 +61,24 @@
                 data-ride="carousel">
                 <!--Slides-->
                 <div class="carousel-inner video-container" role="listbox">
-                    <div class="carousel-item active">
+                {{#each text.videos}}
+                    <div class="carousel-item {{this.class}}">
                         <div class="iframe-container">
-                            <iframe class="responsive-iframe" src="https://www.youtube.com/embed/JToVTK54Gao"
+                            <iframe class="responsive-iframe" src="https://www.youtube.com/embed/{{this.videoId}}"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="iframe-container">
-                            <iframe class="responsive-iframe" src="https://www.youtube.com/embed/VIp_4n_7EBc"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="iframe-container">
-                            <iframe class="responsive-iframe" src="https://www.youtube.com/embed/DLhxonSVaCg"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="iframe-container">
-                            <iframe class="responsive-iframe" src="https://www.youtube.com/embed/rqN8jjSBa6I"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="iframe-container">
-                            <iframe class="responsive-iframe" src="https://www.youtube.com/embed/RlL9UoclL3A"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="iframe-container">
-                            <iframe class="responsive-iframe" src="https://www.youtube.com/embed/LQkHxRA_too"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-
+                    </div>                
+                {{/each}}    
                 </div>
                 <!--/.Slides-->
 
                 <ol class="carousel-indicators">
-                    <li data-target="#carousel-thumb" data-slide-to="0" class="active"> <img class="d-block full-width"
-                            src="https://i3.ytimg.com/vi/JToVTK54Gao/hqdefault.jpg " class="img-fluid"></li>
-                    <li data-target="#carousel-thumb" data-slide-to="1"><img class="d-block full-width"
-                            src="https://i3.ytimg.com/vi/VIp_4n_7EBc/hqdefault.jpg" class="img-fluid"></li>
-                    <li data-target="#carousel-thumb" data-slide-to="2"><img class="d-block full-width"
-                            src="https://i3.ytimg.com/vi/DLhxonSVaCg/hqdefault.jpg" class="img-fluid"></li>
-                    <li data-target="#carousel-thumb" data-slide-to="3" class="active"> <img class="d-block full-width"
-                            src="https://i3.ytimg.com/vi/rqN8jjSBa6I/hqdefault.jpg" class="img-fluid"></li>
-                    <li data-target="#carousel-thumb" data-slide-to="4"><img class="d-block full-width"
-                            src="https://i3.ytimg.com/vi/RlL9UoclL3A/hqdefault.jpg" class="img-fluid"></li>
-                    <li data-target="#carousel-thumb" data-slide-to="5"><img class="d-block full-width"
-                            src="https://i3.ytimg.com/vi/LQkHxRA_too/hqdefault.jpg" class="img-fluid"></li>
+                    {{#each text.videos}}
+                    <li data-target="#carousel-thumb" data-slide-to="{{this.id}}" class="{{this.class}}"> <img class="img-fluid d-block full-width"
+                            src="https://img.youtube.com/vi/{{this.videoId}}/hqdefault.jpg"></li>
+                    {{/each}}
                 </ol>
             </div>
             <!--/.Carousel Wrapper-->

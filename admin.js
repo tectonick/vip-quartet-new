@@ -5,7 +5,7 @@ const uuidV4 = require("uuid.v4");
 const fs = require('fs');
 const path = require('path');
 const imageProcessor = require("./image-processing");
-const utils=require("./utils");
+const utils = require("./utils");
 const { request } = require("http");
 
 const admin = {
@@ -25,42 +25,106 @@ router.use(function (req, res, next) {
 });
 
 router.get("/login", (req, res) => {
-  res.render("login",  {layout: false});
+  res.render("login", { layout: false });
 });
 
 router.get('/', function (req, res) {
-    var galleryImages=utils.NamesOfDirFilesWOExtension("/static/img/gallery");
-    var repertoire=utils.GetRepertoire();
-    var text=JSON.parse(fs.readFileSync(path.join(__dirname, "text.json")));
-    res.render('admin', {galleryImages, repertoire, text});
+  var galleryImages = utils.NamesOfDirFilesWOExtension("/static/img/gallery");
+  var repertoire = utils.GetRepertoire();
+  var text = JSON.parse(fs.readFileSync(path.join(__dirname, "text.json")));
+  res.render('admin', { galleryImages, repertoire, text });
 });
 
 
 router.post("/", urlencodedParser, (req, res) => {
-  
-  var repertoire=req.body.repertoire;
-  delete req.body.repertoire; 
-  fs.readdirSync(path.join(__dirname,"repertoire")).forEach(element => {
-    fs.unlinkSync(path.join(__dirname,"repertoire",element));    
+
+
+  console.log("1");
+  var repertoire = req.body.repertoire;
+  var photosToDelete = req.body.photosToDelete;
+  delete req.body.repertoire;
+  delete req.body.photosToDelete;
+
+  fs.readdirSync(path.join(__dirname, "repertoire")).forEach(element => {
+    fs.unlinkSync(path.join(__dirname, "repertoire", element));
   });
 
+  console.log("2");
 
-
-  if(req.body.contacts_phones){
-    var pId=0;
-    req.body.contacts_phones.forEach((element)=>{
-      element.id=pId;
+  if (req.body.contacts_phones) {
+    var pId = 0;
+    req.body.contacts_phones.forEach((element) => {
+      element.id = pId;
       pId++;
     })
   }
+  console.log("3");
 
-  repertoire.forEach(element => {
-    fs.writeFileSync(path.join(__dirname,"repertoire",element.name+".txt"),element.data);    
-  });
 
-  fs.writeFileSync(path.join(__dirname, "text.json"),JSON.stringify(req.body));
-    res.redirect("/admin");
+  console.log("4");
+
+  if (photosToDelete) {
+    photosToDelete.forEach(element => {
+      fs.unlinkSync(path.join(__dirname, "static", element));
+      console.log(element);
+    });
+  }
+  console.log("5");
+
+
+
+  fs.writeFileSync(path.join(__dirname, "text.json"), JSON.stringify(req.body));
+   if (repertoire) {
+     repertoire.forEach(element => {
+       fs.writeFileSync(path.join(__dirname, "repertoire", element.name + ".txt"), element.data);
+     });
+   }
+  
+
+  res.redirect("/admin");
 });
+
+
+
+
+router.post("/upload", urlencodedParser, (req, res) => {
+  if (req.files) {
+    console.log(req.files);
+    var files = [];
+    if (!Array.isArray(req.files.files)) {
+      files.push(req.files.files);
+    } else {
+      files = req.files.files;
+    }
+
+    files.forEach((fileToUpload) => {
+      let tmpfile = path.join(__dirname, 'tmp/', fileToUpload.name);
+      fileToUpload.mv(tmpfile, function (err) {
+        imageProcessor.galleryImage(tmpfile).then(() => {
+          let name = path.basename(tmpfile, path.extname(tmpfile));
+          let dir = path.dirname(tmpfile);
+          let src = path.join(dir, name + '.jpg');
+          let dst = path.join(__dirname, '/static/img/gallery/', name + '.jpg');
+          fs.copyFileSync(src, dst);
+          fs.unlinkSync(src);
+          if (tmpfile != src) {
+            fs.unlinkSync(tmpfile);
+          }
+          if (err) return res.status(500).send(err);
+          return res.status(200).send();
+        }).catch(err => {
+          console.error(err);
+        });;
+
+      });
+    });
+  } else {
+    return res.status(200).send();
+  }
+
+});
+
+
 
 
 router.post("/login", urlencodedParser, (req, res) => {
