@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const imageProcessor = require("./image-processing");
 const utils=require("./utils");
+const { request } = require("http");
 
 const admin = {
   user: "root",
@@ -36,17 +37,28 @@ router.get('/', function (req, res) {
 
 
 router.post("/", urlencodedParser, (req, res) => {
+  
   var repertoire=req.body.repertoire;
   delete req.body.repertoire; 
   fs.readdirSync(path.join(__dirname,"repertoire")).forEach(element => {
     fs.unlinkSync(path.join(__dirname,"repertoire",element));    
   });
 
+
+
+  if(req.body.contacts_phones){
+    var pId=0;
+    req.body.contacts_phones.forEach((element)=>{
+      element.id=pId;
+      pId++;
+    })
+  }
+
   repertoire.forEach(element => {
     fs.writeFileSync(path.join(__dirname,"repertoire",element.name+".txt"),element.data);    
   });
 
-  //fs.writeFileSync(path.join(__dirname, "text.json"),JSON.stringify(req.body));
+  fs.writeFileSync(path.join(__dirname, "text.json"),JSON.stringify(req.body));
     res.redirect("/admin");
 });
 

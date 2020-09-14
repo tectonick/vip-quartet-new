@@ -18,7 +18,7 @@ function NamesOfDirFilesWOExtension(basepath){
   function GetRepertoire(){
       var names=[];
       var realpath=path.join(__dirname,'repertoire');  
-      var n=1;
+      var n=0;
       var files = fs.readdirSync(realpath);
         files.forEach(file => {
           let content=fs.readFileSync(path.join(realpath,file));  

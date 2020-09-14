@@ -3,11 +3,7 @@
     <a id="save-button"><img src="/img/save-icon.png" alt="save"></a>
     <a href="/admin/logout"><img src="/img/exit-icon.png" alt="exit"></a>
 </div>
-<script>
-        document.getElementById('save-button').addEventListener("click",()=>{
-        document.getElementById('edit-form').submit();
-    })
-</script>
+
 
 <main class="mt-4">
 
@@ -146,12 +142,16 @@
 
                         {{#each repertoire}}
                         <!-- Accordion item-->
-                        <div class="card">
+                        <div class="card repertoire-card" num="{{this.num}}">
+                            <a class="delete-repertoire-button" href=""><img src="/img/delete-icon.png"
+                                    alt="delete repertoire"></a>
                             <div id="heading{{this.num}}" class="card-header border-0">
+
                                 <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
                                         data-target="#collapse{{this.num}}" aria-expanded="false"
                                         aria-controls="collapseOne"
-                                        class="pr-5 d-block position-relative collapsed collapsible-link py-2"><textarea name="repertoire[{{this.num}}][name]" rows="1">{{this.name}}</textarea></a>
+                                        class="pr-5 d-block position-relative collapsed collapsible-link py-2"><textarea
+                                            name="repertoire[{{this.num}}][name]" rows="1">{{this.name}}</textarea></a>
                                 </h6>
                             </div>
                             <div id="collapse{{this.num}}" aria-labelledby="heading{{this.num}}"
@@ -162,8 +162,8 @@
                             </div>
                         </div>
                         {{/each}}
-
                     </div>
+                    <a id="add-repertoire-button" href=""><img src="/img/plus-icon.png" alt="add repertoire"></a>
                 </div>
             </div>
 
@@ -179,16 +179,21 @@
             <textarea name="contacts_title" rows="1">{{text.contacts_title}}</textarea>
 
             <p>
-                <div id="phones">
+            <div id="phones">
                 {{#each text.contacts_phones}}
-                <input type="hidden" name="contacts_phones[{{this.id}}][id]" value="{{this.id}}">
-                <textarea name="contacts_phones[{{this.id}}][name]" rows="1">{{this.name}}</textarea>
-                <textarea name="contacts_phones[{{this.id}}][phone]" rows="1">{{this.phone}}</textarea>
-                {{/each}}
-                    
+                <div num="{{this.id}}" class="contact-phone">
+                    <input type="hidden" name="contacts_phones[{{this.id}}][id]" value="{{this.id}}">
+                    <textarea name="contacts_phones[{{this.id}}][name]" rows="1">{{this.name}}</textarea>
+                    <textarea name="contacts_phones[{{this.id}}][phone]" rows="1">{{this.phone}}</textarea>
+                    <a class="delete-contact-button" href=""><img src="/img/delete-icon.png" alt="delete contact"></a>
+
                 </div>
 
-                <textarea  name="contacts_email" rows="1">{{text.contacts_email}}</textarea>
+                {{/each}}
+            </div>
+            <a id="add-phone-button" href=""><img src="/img/plus-icon.png" alt="add phone"></a>
+
+            <textarea name="contacts_email" rows="1">{{text.contacts_email}}</textarea>
 
             </p>
             <div id="social">
@@ -209,3 +214,82 @@
     </form>
 
 </main>
+
+<script>
+    document.getElementById('save-button').addEventListener("click", () => {
+        event.preventDefault();
+        document.getElementById('edit-form').submit();
+    })
+    document.getElementById('add-repertoire-button').addEventListener("click", () => {
+        event.preventDefault();
+        let newId = document.querySelectorAll('.repertoire-card').length;
+        let repertoireAccordion= document.getElementById("accordionExample");
+        
+        let newNode=document.createElement("div");
+        newNode.innerHTML=`<div class="card repertoire-card" num="${newId}">
+                            <a class="delete-repertoire-button" href=""><img src="/img/delete-icon.png"
+                                    alt="delete repertoire"></a>
+                            <div id="heading${newId}" class="card-header border-0">
+
+                                <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
+                                        data-target="#collapse${newId}" aria-expanded="false"
+                                        aria-controls="collapseOne"
+                                        class="pr-5 d-block position-relative collapsed collapsible-link py-2"><textarea
+                                            name="repertoire[${newId}][name]" rows="1">Название списка</textarea></a>
+                                </h6>
+                            </div>
+                            <div id="collapse${newId}" aria-labelledby="heading${newId}"
+                                data-parent="#accordionExample" class="collapse">
+                                <div class="card-body">
+                                    <textarea name="repertoire[${newId}][data]" rows="10">Репертуарный список</textarea>
+                                </div>
+                            </div>
+                        </div>`;
+        let deleteButton=newNode.querySelector(".delete-repertoire-button");
+        addDeleteParentEvent(deleteButton);
+        repertoireAccordion.appendChild(newNode);
+    })
+
+
+
+
+
+
+    document.getElementById('add-phone-button').addEventListener("click", () => {
+        event.preventDefault();
+        let newId = document.querySelectorAll('.contact-phone').length;
+        let phones= document.getElementById("phones");
+        
+        let newNode=document.createElement("div");
+        newNode.innerHTML=`<div num="${newId}" class="contact-phone">\
+                    <input type="hidden" name="contacts_phones[${newId}][id]" value="${newId}">\
+                    <textarea name="contacts_phones[${newId}][name]" rows="1">Имя</textarea>\
+                    <textarea name="contacts_phones[${newId}][phone]" rows="1">Телефон</textarea>\
+                    <a class="delete-contact-button" href=""><img src="/img/delete-icon.png" alt="delete contact"></a>\
+                </div>`;
+        let deleteButton=newNode.querySelector(".delete-contact-button");
+        addDeleteParentEvent(deleteButton);
+        phones.appendChild(newNode);
+    })
+
+    function addDeleteParentEvent(element){
+        element.addEventListener("click", () => {
+            event.preventDefault();
+            element.parentElement.remove();
+        })
+    }
+    document.querySelectorAll('.delete-repertoire-button').forEach((element) => {
+        addDeleteParentEvent(element);
+    })
+
+    document.querySelectorAll('.delete-contact-button').forEach((element) => {
+        element.addEventListener("click", () => {
+            event.preventDefault();
+            element.parentElement.remove();
+        })
+    })
+
+
+
+
+</script>

@@ -570,3 +570,33 @@ textarea{
   display: inline-block;
   width: 40%;
 }
+
+a img{
+  transition: opacity 0.2s;
+  width:2rem;
+}
+a img:hover{
+  opacity: 0.4;
+
+}
+
+.delete-repertoire-button{
+  position: absolute;
+    right: 0;
+    width: 2rem;
+    font-size: 0 !important;
+    
+}
+
+.delete-repertoire-button img{
+  width: 100%;
+  margin-top: 65% !important;
+}
+
+.delete-contact-button{
+  position: absolute;
+    
+}
+.delete-contact-button img{
+  width: 100%;
+}
