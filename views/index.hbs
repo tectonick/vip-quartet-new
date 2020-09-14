@@ -5,7 +5,7 @@
 
          <h2>{{text.welcome_title}} </h2>            
         <p>{{text.welcome_text}}</p>
-        <img src="/img/delimiter.png" alt="" class="delimiter my-4">
+        <img src="/img/ui/delimiter.png" alt="" class="delimiter my-4">
         <p>
             {{text.promo_text}}
         </p>
@@ -98,14 +98,14 @@
                      {{#each text.repertoire}}
                     <!-- Accordion item-->
                     <div class="card">
-                        <div id="heading{{this.num}}" class="card-header border-0">
+                        <div id="heading{{this.id}}" class="card-header border-0">
                             <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
-                                    data-target="#collapse{{this.num}}" aria-expanded="false"
+                                    data-target="#collapse{{this.id}}" aria-expanded="false"
                                     aria-controls="collapseOne"
                                     class="pr-5 d-block position-relative collapsed collapsible-link py-2">{{this.name}}</a>
                             </h6>
                         </div>
-                        <div id="collapse{{this.num}}" aria-labelledby="heading{{this.num}}"
+                        <div id="collapse{{this.id}}" aria-labelledby="heading{{this.id}}"
                             data-parent="#accordionExample" class="collapse">
                             <div class="card-body">
                                 <pre class="font-weight-light m-0">{{this.data}}</pre>
@@ -140,18 +140,18 @@
         </p>
         <div id="social">
             <a href="https://www.youtube.com/channel/UCu7rBk0zuJmjdTyWGTr2TPA/" target="_blank">
-                <img class="social-img" src="/img/youtube-logo.jpg" alt="">
+                <img class="social-img" src="/img/ui/youtube-logo.jpg" alt="">
             </a>
             <a href="https://www.facebook.com/groups/286238234775563//" target="_blank">
-                <img class="social-img" src="/img/facebook-logo.png" alt="">
+                <img class="social-img" src="/img/ui/facebook-logo.png" alt="">
             </a>
             <a href="https://vk.com/club83445962/" target="_blank">
-                <img class="social-img" src="/img/vk-logo.png" alt="">
+                <img class="social-img" src="/img/ui/vk-logo.png" alt="">
             </a>
         </div>
     </div>
 
-    <img src="/img/delimiter.png" alt="" class="delimiter my-4">
+    <img src="/img/ui/delimiter.png" alt="" class="delimiter my-4">
 
 
 

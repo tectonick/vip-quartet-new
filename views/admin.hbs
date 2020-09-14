@@ -1,7 +1,7 @@
 <div class="edit-title">
     <span>Редактор сайта</span>
-    <a id="save-button"><img src="/img/save-icon.png" alt="save"></a>
-    <a href="/admin/logout"><img src="/img/exit-icon.png" alt="exit"></a>
+    <a id="save-button"><img src="/img/ui/save-icon.png" alt="save"></a>
+    <a href="/admin/logout"><img src="/img/ui/exit-icon.png" alt="exit"></a>
 </div>
 
 
@@ -14,7 +14,7 @@
 
             <textarea name="welcome_title" rows="1">{{text.welcome_title}}</textarea>
             <textarea name="welcome_text" rows="5">{{text.welcome_text}}</textarea>
-            <img src="/img/delimiter.png" alt="" class="delimiter my-4">
+            <img src="/img/ui/delimiter.png" alt="" class="delimiter my-4">
             <textarea name="promo_text" rows="5">{{text.promo_text}}</textarea>
         </div>
         <br>
@@ -30,7 +30,7 @@
             <textarea name="photo_title" rows="1">{{text.photo_title}}</textarea>
             <div id="upload">
                 <label>Загрузить изображения</label>
-                <input id="files" name="files" type="file" form="gallery-form" multiple/>
+                <input id="files" name="files" type="file" form="gallery-form" multiple />
             </div>
 
             <div class="tz-gallery">
@@ -38,7 +38,8 @@
 
                     {{#each galleryImages}}
                     <div class="card photo-card">
-                        <a class="delete-photo-button" link="/img/gallery/{{this}}.jpg"><img src="/img/delete-icon-black.png" alt="delete photo"></a>
+                        <a class="delete-photo-button" link="/img/gallery/{{this}}.jpg"><img
+                                src="/img/ui/delete-icon-black.png" alt="delete photo"></a>
                         <div class="thumbnail">
                             <a class="lightbox " style="overflow:hidden;" href="/img/gallery/{{this}}.jpg">
                                 <img class="card-img-top" style=" width: 100%;" src="/img/gallery/{{this}}.jpg"
@@ -59,21 +60,20 @@
         <div class="container fade" id="video">
             <textarea name="video_title" rows="1">{{text.video_title}}</textarea>
 
-                {{#each text.videos}}
-                    <div class="video-item">
-                        <div class="iframe-container">
-                            <iframe class="responsive-iframe" src="https://www.youtube.com/embed/{{this.videoId}}"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                        <input type="hidden" name="videos[{{this.id}}][id]" value="{{this.id}}">
-                        <input type="hidden" name="videos[{{this.id}}][class]" value="{{this.class}}">
-                        <input class="videoId-input" type="hidden" name="videos[{{this.id}}][videoId]" value="{{this.videoId}}">
-                        <textarea id=""rows="1">https://www.youtube.com/watch?v={{this.videoId}}</textarea>
-                    </div>                
-                {{/each}}    
+            {{#each text.videos}}
+            <div class="video-item">
+                <div class="iframe-container">
+                    <iframe class="responsive-iframe" src="https://www.youtube.com/embed/{{this.videoId}}"
+                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <input type="hidden" name="videos[{{this.id}}][id]" value="{{this.id}}">
+                <input type="hidden" name="videos[{{this.id}}][class]" value="{{this.class}}">
+                <input class="videoId-input" type="hidden" name="videos[{{this.id}}][videoId]" value="{{this.videoId}}">
+                <textarea id="" rows="1">https://www.youtube.com/watch?v={{this.videoId}}</textarea>
             </div>
+            {{/each}}
+        </div>
         </div>
 
         <br>
@@ -88,39 +88,34 @@
 
                         {{#each text.repertoire}}
                         <!-- Accordion item-->
-                        <div class="card repertoire-card" num="{{this.num}}">
-                            <a class="delete-repertoire-button" href=""><img src="/img/delete-icon.png"
+                        <div class="card repertoire-card" num="{{this.id}}">
+                            <a class="delete-repertoire-button" href=""><img src="/img/ui/delete-icon.png"
                                     alt="delete repertoire"></a>
-                            <div id="heading{{this.num}}" class="card-header border-0">
+                            <div id="heading{{this.id}}" class="card-header border-0">
 
                                 <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
-                                        data-target="#collapse{{this.num}}" aria-expanded="false"
+                                        data-target="#collapse{{this.id}}" aria-expanded="false"
                                         aria-controls="collapseOne"
                                         class="pr-5 d-block position-relative collapsed collapsible-link py-2"><textarea
-                                            name="repertoire[{{this.num}}][name]" rows="1">{{this.name}}</textarea></a>
+                                            name="repertoire[{{this.id}}][name]" rows="1">{{this.name}}</textarea></a>
                                 </h6>
                             </div>
-                            <div id="collapse{{this.num}}" aria-labelledby="heading{{this.num}}"
+                            <div id="collapse{{this.id}}" aria-labelledby="heading{{this.id}}"
                                 data-parent="#accordionExample" class="collapse">
                                 <div class="card-body">
-                                    <textarea name="repertoire[{{this.num}}][data]" rows="10">{{this.data}}</textarea>
-                                     <input type="hidden" name="repertoire[{{this.num}}][num]" value="{{this.num}}"/>
+                                    <textarea name="repertoire[{{this.id}}][data]" rows="10">{{this.data}}</textarea>
+                                    <input type="hidden" name="repertoire[{{this.id}}][id]" value="{{this.id}}" />
                                 </div>
                             </div>
                         </div>
                         {{/each}}
                     </div>
-                    <a id="add-repertoire-button" href=""><img src="/img/plus-icon.png" alt="add repertoire"></a>
+                    <a id="add-repertoire-button" href=""><img src="/img/ui/plus-icon.png" alt="add repertoire"></a>
                 </div>
             </div>
 
         </div>
         <br>
-
-
-
-
-
 
         <div class="container fade" id="contacts">
             <textarea name="contacts_title" rows="1">{{text.contacts_title}}</textarea>
@@ -132,155 +127,35 @@
                     <input type="hidden" name="contacts_phones[{{this.id}}][id]" value="{{this.id}}">
                     <textarea name="contacts_phones[{{this.id}}][name]" rows="1">{{this.name}}</textarea>
                     <textarea name="contacts_phones[{{this.id}}][phone]" rows="1">{{this.phone}}</textarea>
-                    <a class="delete-contact-button" href=""><img src="/img/delete-icon.png" alt="delete contact"></a>
+                    <a class="delete-contact-button" href=""><img src="/img/ui/delete-icon.png" alt="delete contact"></a>
 
                 </div>
 
                 {{/each}}
             </div>
-            <a id="add-phone-button" href=""><img src="/img/plus-icon.png" alt="add phone"></a>
+            <a id="add-phone-button" href=""><img src="/img/ui/plus-icon.png" alt="add phone"></a>
 
             <textarea name="contacts_email" rows="1">{{text.contacts_email}}</textarea>
 
             </p>
             <div id="social">
                 <a href="https://www.youtube.com/channel/UCu7rBk0zuJmjdTyWGTr2TPA/" target="_blank">
-                    <img class="social-img" src="/img/youtube-logo.jpg" alt="">
+                    <img class="social-img" src="/img/ui/youtube-logo.jpg" alt="">
                 </a>
                 <a href="https://www.facebook.com/groups/286238234775563//" target="_blank">
-                    <img class="social-img" src="/img/facebook-logo.png" alt="">
+                    <img class="social-img" src="/img/ui/facebook-logo.png" alt="">
                 </a>
                 <a href="https://vk.com/club83445962/" target="_blank">
-                    <img class="social-img" src="/img/vk-logo.png" alt="">
+                    <img class="social-img" src="/img/ui/vk-logo.png" alt="">
                 </a>
             </div>
         </div>
 
-        <img src="/img/delimiter.png" alt="" class="delimiter my-4">
+        <img src="/img/ui/delimiter.png" alt="" class="delimiter my-4">
 
     </form>
 
 </main>
 
-<script>
-        document.getElementById('save-button').addEventListener("click", () => {
-            event.preventDefault();
-            var http = new XMLHttpRequest();
-            var data = new FormData(document.getElementById('gallery-form'));
-            http.open("POST", "/admin/upload", true);
-            http.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById('edit-form').submit();
-                }
-            };
-            http.send(data);   
-        }); 
 
-
-
-
-
-    document.getElementById('add-repertoire-button').addEventListener("click", () => {
-        event.preventDefault();
-        let newId = document.querySelectorAll('.repertoire-card').length;
-        let repertoireAccordion= document.getElementById("accordionExample");
-        
-        let newNode=document.createElement("div");
-        newNode.innerHTML=`<div class="card repertoire-card" num="${newId}">
-                            <a class="delete-repertoire-button" href=""><img src="/img/delete-icon.png"
-                                    alt="delete repertoire"></a>
-                            <div id="heading${newId}" class="card-header border-0">
-
-                                <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
-                                        data-target="#collapse${newId}" aria-expanded="false"
-                                        aria-controls="collapseOne"
-                                        class="pr-5 d-block position-relative collapsed collapsible-link py-2"><textarea
-                                            name="repertoire[${newId}][name]" rows="1">Название списка</textarea></a>
-                                </h6>
-                            </div>
-                            <div id="collapse${newId}" aria-labelledby="heading${newId}"
-                                data-parent="#accordionExample" class="collapse">
-                                <div class="card-body">
-                                    <textarea name="repertoire[${newId}][data]" rows="10">Репертуарный список</textarea>
-                                    <input type="hidden" name="repertoire[${newId}][num]" value="${newId}"/>
-                                </div>
-                            </div>
-                        </div>`;
-        let deleteButton=newNode.querySelector(".delete-repertoire-button");
-        addDeleteParentEvent(deleteButton);
-        repertoireAccordion.appendChild(newNode);
-    })
-
-
-
-
-
-
-    document.getElementById('add-phone-button').addEventListener("click", () => {
-        event.preventDefault();
-        let newId = document.querySelectorAll('.contact-phone').length;
-        let phones= document.getElementById("phones");
-        
-        let newNode=document.createElement("div");
-        newNode.innerHTML=`<div num="${newId}" class="contact-phone">\
-                    <input type="hidden" name="contacts_phones[${newId}][id]" value="${newId}">\
-                    <textarea name="contacts_phones[${newId}][name]" rows="1">Имя</textarea>\
-                    <textarea name="contacts_phones[${newId}][phone]" rows="1">Телефон</textarea>\
-                    <a class="delete-contact-button" href=""><img src="/img/delete-icon.png" alt="delete contact"></a>\
-                </div>`;
-        let deleteButton=newNode.querySelector(".delete-contact-button");
-        addDeleteParentEvent(deleteButton);
-        phones.appendChild(newNode);
-    });
-
-    function addDeleteParentEvent(element){
-        element.addEventListener("click", () => {
-            event.preventDefault();
-            element.parentElement.remove();
-        })
-    };
-    document.querySelectorAll('.delete-repertoire-button').forEach((element) => {
-        addDeleteParentEvent(element);
-    });
-
-    document.querySelectorAll('.delete-photo-button').forEach((element) => {
-        element.addEventListener("click", () => {
-            //event.preventDefault();
-            let toDelete=document.createElement("div");
-            toDelete.innerHTML=`<input type="hidden" name="photosToDelete[]" value="${element.getAttribute("link")}">`;
-            document.getElementById('photo').appendChild(toDelete);
-            element.parentElement.remove();            
-        })       
-    });
-    
-
-    document.querySelectorAll('.delete-contact-button').forEach((element) => {
-        element.addEventListener("click", () => {
-            event.preventDefault();
-            element.parentElement.remove();
-        })
-    });
-
-    document.querySelectorAll(".video-item").forEach((element)=>{
-        var iframe = element.querySelector(".responsive-iframe");
-        var textarea = element.querySelector("textarea");
-        var inputVideoId = element.querySelector(".videoId-input");
-        textarea.addEventListener('input',()=>{
-            let youtubeId=GetYoutubeId(textarea.value);
-            iframe.setAttribute("src", `https://www.youtube.com/embed/${youtubeId}`  );
-            inputVideoId.setAttribute("value", youtubeId);
-        });
-    });
-
-    function GetYoutubeId(url) {
-      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-      const match = url.match(regExp);
-  
-      return (match && match[2].length === 11)
-        ? match[2]
-        : null;
-    }
-
-
-
-</script>
+<script src="/scripts/admin.js"></script>

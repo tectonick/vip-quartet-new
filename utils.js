@@ -1,28 +1,35 @@
-
-const path=require('path');
-const fs=require('fs');
-
-
-function NamesOfDirFilesWOExtension(basepath){
-    var names=[];
-    var realpath=path.join(__dirname, basepath);  
-    var files = fs.readdirSync(realpath);
-      files.forEach(file => {
-        names.push(path.basename(file, ".jpg"));
-                 
-      }); 
-      
-    return names;
-  }
+const Jimp = require('jimp');
+const path = require('path');
+const fs = require('fs');
 
 
-    function GetYoutubeId(url) {
-      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-      const match = url.match(regExp);
-  
-      return (match && match[2].length === 11)
-        ? match[2]
-        : null;
-    }
+function NamesOfDirFilesWOExtension(basepath) {
+  var names = [];
+  var realpath = path.join(__dirname, basepath);
+  var files = fs.readdirSync(realpath);
+  files.forEach(file => {
+    names.push(path.basename(file, ".jpg"));
 
-module.exports ={NamesOfDirFilesWOExtension};
+  });
+
+  return names;
+}
+
+function GalleryImageConvert(filepath) {
+
+  return Jimp.read(filepath)
+    .then(file => {
+      let ext = path.extname(filepath);
+      let name = path.basename(filepath, ext);
+      let dir = path.dirname(filepath);
+      return file.resize(1600, Jimp.AUTO) // resize
+        .quality(100) // set JPEG quality
+        .writeAsync(path.join(dir, name + '.jpg')); //
+    })
+    .catch(err => {
+      console.error(err);
+    });
+
+}
+
+module.exports = { NamesOfDirFilesWOExtension, GalleryImageConvert };

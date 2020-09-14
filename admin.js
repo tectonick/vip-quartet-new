@@ -4,9 +4,7 @@ const bodyParser = require("body-parser");
 const uuidV4 = require("uuid.v4");
 const fs = require('fs');
 const path = require('path');
-const imageProcessor = require("./image-processing");
 const utils = require("./utils");
-const { request } = require("http");
 
 const admin = {
   user: "root",
@@ -36,9 +34,13 @@ router.get('/', function (req, res) {
 
 
 router.post("/", urlencodedParser, (req, res) => {
-  var repertoire = req.body.repertoire;
   var photosToDelete = req.body.photosToDelete;
   delete req.body.photosToDelete;
+  if (photosToDelete) {
+    photosToDelete.forEach(element => {
+      fs.unlinkSync(path.join(__dirname, "static", element));
+    });
+  }
   if (req.body.contacts_phones) {
     var pId = 0;
     req.body.contacts_phones.forEach((element) => {
@@ -46,11 +48,12 @@ router.post("/", urlencodedParser, (req, res) => {
       pId++;
     })
   }
-  if (photosToDelete) {
-    photosToDelete.forEach(element => {
-      fs.unlinkSync(path.join(__dirname, "static", element));
-      console.log(element);
-    });
+  if (req.body.repertoire) {
+    var pId = 0;
+    req.body.repertoire.forEach((element) => {
+      element.id = pId;
+      pId++;
+    })
   }
   fs.writeFileSync(path.join(__dirname, "text.json"), JSON.stringify(req.body));
   res.redirect("/admin");
@@ -61,18 +64,16 @@ router.post("/", urlencodedParser, (req, res) => {
 
 router.post("/upload", urlencodedParser, (req, res) => {
   if (req.files) {
-    console.log(req.files);
     var files = [];
     if (!Array.isArray(req.files.files)) {
       files.push(req.files.files);
     } else {
       files = req.files.files;
     }
-
     files.forEach((fileToUpload) => {
       let tmpfile = path.join(__dirname, 'tmp/', fileToUpload.name);
       fileToUpload.mv(tmpfile, function (err) {
-        imageProcessor.galleryImage(tmpfile).then(() => {
+        utils.GalleryImageConvert(tmpfile).then(() => {
           let name = path.basename(tmpfile, path.extname(tmpfile));
           let dir = path.dirname(tmpfile);
           let src = path.join(dir, name + '.jpg');
@@ -93,10 +94,7 @@ router.post("/upload", urlencodedParser, (req, res) => {
   } else {
     return res.status(200).send();
   }
-
 });
-
-
 
 
 router.post("/login", urlencodedParser, (req, res) => {
