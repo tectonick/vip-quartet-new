@@ -148,13 +148,13 @@ pre{
 }
 
 #repertoire a{
-  font-size: 170%;
+  font-size: 180%;
   font-weight:normal;
 }
 
-@media (max-width:556px){
+@media (max-width:768px){
     #repertoire a{
-        font-size: 110%;
+        font-size: 120%;
     }
 
 }
@@ -336,6 +336,8 @@ pre{
         opacity: 0;
     }
 }
+
+
 .arrow{
   display: none;
 }
@@ -350,6 +352,7 @@ pre{
     display:none;
   }
 }
+
 @media(min-width:1400px){
   .arrow {
     display:block;
@@ -375,7 +378,7 @@ pre{
   opacity: 0;
 }
 
-@media (max-width:776px){
+@media (max-width:768px){
   #logo{
     width: 70%;
     left:2rem;
