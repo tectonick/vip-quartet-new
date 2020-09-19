@@ -28,7 +28,7 @@ body{
 }
 
 body{
-  font-size: 3vw;
+  font-size: 2.6vw;
 }
 h2{
   font-size: 4.5vw;
@@ -45,16 +45,28 @@ a, a:visited, a:hover, a:active  {
   text-decoration: none;
 }
 
+
+
+
+
+
 @media (max-width:776px){
   pre{
     font-size: 100%;
   }
   body{
-    font-size: 5vw;
+    font-size: 4vw;
   }
   h2{
     font-size: 7vw;
   }
+}
+
+@media (max-width:556px){
+  body{
+    font-size: 5vw;
+  }
+
 }
 
 @media (min-width: 1200px){
@@ -88,6 +100,14 @@ main > .container{
 }
 .delimiter{
   width: 55%;
+}
+
+.para{
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    overflow: visible;
+    font-size:1em;
+}
 }
 
 /*
@@ -132,6 +152,12 @@ pre{
   font-weight:normal;
 }
 
+@media (max-width:556px){
+    #repertoire a{
+        font-size: 110%;
+    }
+
+}
 
 .collapsible-link::before {
   content: '';

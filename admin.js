@@ -7,8 +7,8 @@ const path = require('path');
 const utils = require("./utils");
 
 const admin = {
-  user: "root",
-  password: "devpassword123"
+  user: "tskh",
+  password: "Marina624"
 }
 var sessionId = 'none';
 
