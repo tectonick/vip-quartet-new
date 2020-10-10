@@ -5,11 +5,15 @@ const uuidV4 = require("uuid.v4");
 const fs = require('fs');
 const path = require('path');
 const utils = require("./utils");
+const bcrypt = require('bcrypt');
+
 
 const admin = {
   user: "tskh",
-  password: "Marina624"
+  passhash: "$2b$12$5ElNSfqN8DoggmOkKNMxLuSfslUmJT/bHfdbJhGVrmJfYnm0Bx486"
 }
+
+
 var sessionId = 'none';
 
 const urlencodedParser = bodyParser.urlencoded({ extended: true });
@@ -99,7 +103,7 @@ router.post("/upload", urlencodedParser, (req, res) => {
 
 router.post("/login", urlencodedParser, (req, res) => {
 
-  if ((req.body.username === admin.user) && (req.body.password === admin.password)) {
+  if ((req.body.username === admin.user) && (bcrypt.compareSync(req.body.password, admin.passhash))) {
     sessionId = uuidV4();
     res.cookie("id", sessionId, { maxAge: 24 * 60 * 60 * 10000 });
     res.redirect("/admin");

@@ -1,0 +1,18 @@
+<div class="mb-5" id="youtubeTV">
+    <link href="/scripts/youtubeTV/ytv.css" type="text/css" rel="stylesheet" />
+    <script src="/scripts/youtubeTV/ytv.js" type="text/javascript"></script>
+    <div id="YourPlayerID"></div>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+            var controller = new YTV('YourPlayerID', {
+                playlist: 'PL6NWEMDDxO0ens-0ivU4-x_xzDw1kzjW7',
+                responsive: true,
+                accent: '#fff',
+                browsePlaylists: true,
+                seeMore: 'Больше видео на нашем youtube-канале'
+            });
+        });
+    </script>
+</div>

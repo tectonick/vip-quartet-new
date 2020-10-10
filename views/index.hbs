@@ -4,9 +4,9 @@
     <div class="container" id="intro">
 
          <h2>{{text.welcome_title}} </h2>            
-        <pre class="para">{{text.welcome_text}}</pre>
+        <div>{{{text.welcome_text}}}</div>
         <img src="/img/ui/delimiter.png" alt="" class="delimiter my-4">
-        <pre class="para">{{text.promo_text}}</pre>
+        <div>{{{text.promo_text}}}</div>
     </div>
 
 
@@ -16,7 +16,7 @@
         <h2>
             {{text.history_title}}
         </h2>
-        <pre class="para">{{text.history_text}}</pre>
+        <div class="para">{{{text.history_text}}}</div>
     </div>
 
 
@@ -50,35 +50,9 @@
         <h2>
             {{text.video_title}}
         </h2>
+        {{> youtubeTV}}
 
-        <div>
-            <!--Carousel Wrapper-->
-            <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-interval="false"
-                data-ride="carousel">
-                <!--Slides-->
-                <div class="carousel-inner video-container" role="listbox">
-                {{#each text.videos}}
-                    <div class="carousel-item {{this.class}}">
-                        <div class="iframe-container">
-                            <iframe class="responsive-iframe" src="https://www.youtube.com/embed/{{this.videoId}}"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>                
-                {{/each}}    
-                </div>
-                <!--/.Slides-->
 
-                <ol class="carousel-indicators">
-                    {{#each text.videos}}
-                    <li data-target="#carousel-thumb" data-slide-to="{{this.id}}" class="{{this.class}}"> <img class="img-fluid d-block full-width"
-                            src="https://img.youtube.com/vi/{{this.videoId}}/hqdefault.jpg"></li>
-                    {{/each}}
-                </ol>
-            </div>
-            <!--/.Carousel Wrapper-->
-        </div>
     </div>
 
     <div class="container fade" id="repertoire">
@@ -104,7 +78,7 @@
                         <div id="collapse{{this.id}}" aria-labelledby="heading{{this.id}}"
                             data-parent="#accordionExample" class="collapse">
                             <div class="card-body">
-                                <pre class="font-weight-light m-0">{{this.data}}</pre>
+                                <pre class="font-weight-light m-0">{{{this.data}}}</pre>
                             </div>
                         </div>
                     </div>
