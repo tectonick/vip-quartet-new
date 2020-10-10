@@ -46,7 +46,7 @@
               document.getElementById("loading-videos").style.opacity = 0; //HARDCODED YourPlayerID
 
               document.querySelectorAll(".ytv-clear").forEach((element) => {
-                element.addEventListener("click", (e) => {e.preventDefault();});
+                element.addEventListener("click", () => {});
               });
             },
             stateChange: () => {
@@ -677,13 +677,25 @@
           endpoints: {
             videoClick: function (e) {
               e.preventDefault();
+              if (document.querySelector('.ytv-list-header').contains(e.target)){
+                
+                window.location='https://www.youtube.com/channel/'+settings.channelId;
+              }
+              
               document.querySelector(".ytv-video").style.opacity = 0;
               setTimeout(() => {
                 var target = utils.parentUntil(
                   e.target ? e.target : e.srcElement,
                   "data-ytv"
                 );
+                var more = utils.parentUntil(
+                  e.target ? e.target : e.srcElement,
+                  "data-ytv-playlist-toggle"
+                );
+              
+
                 if (target) {
+                  
                   if (target.getAttribute("data-ytv")) {
                     // Load Video
                     utils.events.prevent(e);
@@ -861,3 +873,5 @@
     });
   }
 }.call(this, window, document));
+
+
