@@ -434,7 +434,6 @@ pre{
   -webkit-transition: 0.15s ease-in-out;
   transition: 0.15s ease-in-out;
 
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
 }
 
 .tz-gallery .thumbnail:hover {
