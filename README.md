@@ -1,0 +1,6 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tectonick_vip-quartet-new&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tectonick_vip-quartet-new)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=tectonick_vip-quartet-new&metric=bugs)](https://sonarcloud.io/summary/new_code?id=tectonick_vip-quartet-new)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=tectonick_vip-quartet-new&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=tectonick_vip-quartet-new)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=tectonick_vip-quartet-new&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=tectonick_vip-quartet-new)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=tectonick_vip-quartet-new&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=tectonick_vip-quartet-new)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=tectonick_vip-quartet-new&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=tectonick_vip-quartet-new)
