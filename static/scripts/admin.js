@@ -1,7 +1,7 @@
-document.getElementById('save-button').addEventListener("click", () => {
-    event.preventDefault();
-    var http = new XMLHttpRequest();
-    var data = new FormData(document.getElementById('gallery-form'));
+document.getElementById('save-button').addEventListener("click", (e) => {
+    e.preventDefault();
+    let http = new XMLHttpRequest();
+    let data = new FormData(document.getElementById('gallery-form'));
     http.open("POST", "/admin/upload", true);
     http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -10,11 +10,11 @@ document.getElementById('save-button').addEventListener("click", () => {
     };
     http.send(data);
 });
-document.getElementById('add-repertoire-button').addEventListener("click", () => {
-    event.preventDefault();
+
+document.getElementById('add-repertoire-button').addEventListener("click", (e) => {
+    e.preventDefault();
     let newId = document.querySelectorAll('.repertoire-card').length;
     let repertoireAccordion = document.getElementById("accordionExample");
-
     let newNode = document.createElement("div");
     newNode.innerHTML = `<div class="card repertoire-card" num="${newId}">
                     <a class="delete-repertoire-button" href=""><img src="/img/ui/delete-icon.png"
@@ -39,12 +39,12 @@ document.getElementById('add-repertoire-button').addEventListener("click", () =>
     let deleteButton = newNode.querySelector(".delete-repertoire-button");
     addDeleteParentEvent(deleteButton);
     repertoireAccordion.appendChild(newNode);
-})
-document.getElementById('add-phone-button').addEventListener("click", () => {
-    event.preventDefault();
+});
+
+document.getElementById('add-phone-button').addEventListener("click", (e) => {
+    e.preventDefault();
     let newId = document.querySelectorAll('.contact-phone').length;
     let phones = document.getElementById("phones");
-
     let newNode = document.createElement("div");
     newNode.innerHTML = `<div num="${newId}" class="contact-phone">\
             <input type="hidden" name="contacts_phones[${newId}][id]" value="${newId}">\
@@ -58,8 +58,8 @@ document.getElementById('add-phone-button').addEventListener("click", () => {
 });
 
 function addDeleteParentEvent(element) {
-    element.addEventListener("click", () => {
-        event.preventDefault();
+    element.addEventListener("click", (e) => {
+        e.preventDefault();
         element.parentElement.remove();
     })
 };
@@ -69,7 +69,6 @@ document.querySelectorAll('.delete-repertoire-button').forEach((element) => {
 
 document.querySelectorAll('.delete-photo-button').forEach((element) => {
     element.addEventListener("click", () => {
-        //event.preventDefault();
         let toDelete = document.createElement("div");
         toDelete.innerHTML = `<input type="hidden" name="photosToDelete[]" value="${element.getAttribute("link")}">`;
         document.getElementById('photo').appendChild(toDelete);
@@ -77,18 +76,17 @@ document.querySelectorAll('.delete-photo-button').forEach((element) => {
     })
 });
 
-
 document.querySelectorAll('.delete-contact-button').forEach((element) => {
-    element.addEventListener("click", () => {
-        event.preventDefault();
+    element.addEventListener("click", (e) => {
+        e.preventDefault();
         element.parentElement.remove();
     })
 });
 
 document.querySelectorAll(".video-item").forEach((element) => {
-    var iframe = element.querySelector(".responsive-iframe");
-    var textarea = element.querySelector("textarea");
-    var inputVideoId = element.querySelector(".videoId-input");
+    let iframe = element.querySelector(".responsive-iframe");
+    let textarea = element.querySelector("textarea");
+    let inputVideoId = element.querySelector(".videoId-input");
     textarea.addEventListener('input', () => {
         let youtubeId = GetYoutubeId(textarea.value);
         iframe.setAttribute("src", `https://www.youtube.com/embed/${youtubeId}`);
@@ -104,7 +102,6 @@ function GetYoutubeId(url) {
         ? match[2]
         : null;
 }
-
 
 tinymce.init({
   selector: 'textarea.editor',
@@ -127,7 +124,7 @@ tinymce.init({
     { title: 'Some class', value: 'class-name' }
   ],
   importcss_append: true,
-  file_picker_callback: function (callback, value, meta) {
+  file_picker_callback: function (callback, _value, meta) {
     /* Provide file and text for the link dialog */
     if (meta.filetype === 'file') {
       callback('https://www.google.com/logos/google.jpg', { text: 'My text' });

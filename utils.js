@@ -2,11 +2,10 @@ const Jimp = require('jimp');
 const path = require('path');
 const fs = require('fs');
 
-
 function NamesOfDirFilesWOExtension(basepath) {
-  var names = [];
-  var realpath = path.join(__dirname, basepath);
-  var files = fs.readdirSync(realpath);
+  let names = [];
+  let realpath = path.join(__dirname, basepath);
+  let files = fs.readdirSync(realpath);
   files.forEach(file => {
     names.push(path.basename(file, ".jpg"));
 
@@ -16,7 +15,6 @@ function NamesOfDirFilesWOExtension(basepath) {
 }
 
 function GalleryImageConvert(filepath) {
-
   return Jimp.read(filepath)
     .then(file => {
       let ext = path.extname(filepath);
@@ -29,7 +27,6 @@ function GalleryImageConvert(filepath) {
     .catch(err => {
       console.error(err);
     });
-
 }
 
 module.exports = { NamesOfDirFilesWOExtension, GalleryImageConvert };

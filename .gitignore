@@ -114,3 +114,12 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# deploy ftp data
+/deploy/configFTP.ps1
+
+#local configuration
+config/local.json
+
+#rsa keys
+sec/

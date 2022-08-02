@@ -5,7 +5,11 @@
   "main": "app.js",
   "scripts": {
     "start": "node app",
-    "dev": "nodemon app"
+    "dev": "nodemon app",
+    "test": "jest --verbose",
+    "git": "git add * && git commit && git push",
+    "deploy": "git ftp push",
+    "pipeline": "npm run git && npm run deploy"
   },
   "author": "Nick Kiselev",
   "license": "ISC",
@@ -14,6 +18,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "config": "^3.3.7",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.0",
