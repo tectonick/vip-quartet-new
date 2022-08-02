@@ -83,10 +83,9 @@ router.post("/upload", urlencodedParser, (req, res) => {
           }
           if (err) return res.status(500).send(err);
           return res.status(200).send();
-        }).catch(err => {
-          console.error(err);
-        });;
-
+        }).catch(uploadErr => {
+          console.error(uploadErr);
+        });
       });
     });
   } else {
@@ -104,7 +103,7 @@ router.post("/login", urlencodedParser, (req, res) => {
   }
 });
 
-router.get('/logout', function (req, res) {
+router.get('/logout', function (_req, res) {
   res.clearCookie('id');
   res.redirect("/");
 });

@@ -1,3 +1,10 @@
+function addDeleteParentEvent(element) {
+    element.addEventListener("click", (e) => {
+        e.preventDefault();
+        element.parentElement.remove();
+    })
+}
+
 document.getElementById('save-button').addEventListener("click", (e) => {
     e.preventDefault();
     let http = new XMLHttpRequest();
@@ -57,16 +64,6 @@ document.getElementById('add-phone-button').addEventListener("click", (e) => {
     phones.appendChild(newNode);
 });
 
-function addDeleteParentEvent(element) {
-    element.addEventListener("click", (e) => {
-        e.preventDefault();
-        element.parentElement.remove();
-    })
-};
-document.querySelectorAll('.delete-repertoire-button').forEach((element) => {
-    addDeleteParentEvent(element);
-});
-
 document.querySelectorAll('.delete-photo-button').forEach((element) => {
     element.addEventListener("click", () => {
         let toDelete = document.createElement("div");
@@ -76,11 +73,8 @@ document.querySelectorAll('.delete-photo-button').forEach((element) => {
     })
 });
 
-document.querySelectorAll('.delete-contact-button').forEach((element) => {
-    element.addEventListener("click", (e) => {
-        e.preventDefault();
-        element.parentElement.remove();
-    })
+document.querySelectorAll('.delete-repertoire-button, .delete-contact-button').forEach((element) => {
+    addDeleteParentEvent(element);
 });
 
 document.querySelectorAll(".video-item").forEach((element) => {
@@ -112,12 +106,12 @@ tinymce.init({
   toolbar_sticky: true,
   image_advtab: true,
   link_list: [
-    { title: 'My page 1', value: 'http://www.tinymce.com' },
-    { title: 'My page 2', value: 'http://www.moxiecode.com' }
+    { title: 'My page 1', value: 'https://www.tinymce.com' },
+    { title: 'My page 2', value: 'https://www.moxiecode.com' }
   ],
   image_list: [
-    { title: 'My page 1', value: 'http://www.tinymce.com' },
-    { title: 'My page 2', value: 'http://www.moxiecode.com' }
+    { title: 'My page 1', value: 'https://www.tinymce.com' },
+    { title: 'My page 2', value: 'https://www.moxiecode.com' }
   ],
   image_class_list: [
     { title: 'None', value: '' },
