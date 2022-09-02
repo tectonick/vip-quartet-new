@@ -25,6 +25,7 @@ body {
   display: flex;
   width: 100%;
   flex-direction: column;
+  position: relative;
 }
 
 h2 {
@@ -631,4 +632,25 @@ a img:hover {
   border-style: solid;
   border-color: rgb(118, 118, 118);
   background-color: rgba(240, 240, 240, 0.5);
+}
+
+.me {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 0.55;
+  font-size: 1rem;
+}
+
+.me img {
+  width: 100px;
+  opacity: 1;
+}
+
+.me:hover {
+  opacity: 0.9;
+}
+
+.me img:hover {
+  opacity: 1;
 }
